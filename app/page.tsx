@@ -8,8 +8,8 @@ import { ProjectsSection } from "@/components/projects-section"
 import { PartnershipsSection } from "@/components/partnerships-section"
 import { CompactContact } from "@/components/compact-contact"
 import { ModernFooter } from "@/components/modern-footer"
+import { IsoModal } from "@/components/iso-modal"
 
-import { HeroVideo } from "@/components/hero-video"
 
 export default function Home() {
   return (
@@ -17,9 +17,6 @@ export default function Home() {
       <div className="min-h-screen flex flex-col bg-white">
         <main className="flex-grow">
           <ModernNavigation />
-          {/* Video institucional - ancho completo, encima del carrusel */}
-          <HeroVideo />
-
           <UniversityHero />
           <BooksCarousel />
           <CompactPrograms />
@@ -27,6 +24,7 @@ export default function Home() {
           <ProjectsSection />
           <PartnershipsSection />
           <CompactContact />
+          <IsoModal />
         </main>
         {/* Footer stays at the bottom */}
         <ModernFooter />
