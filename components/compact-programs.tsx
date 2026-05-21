@@ -279,7 +279,7 @@ export function CompactPrograms() {
           <DialogHeader>
             <DialogTitle className="flex items-center justify-center space-x-2 text-xl">
               <Calendar className="h-6 w-6 text-blue-600" />
-              <span>Admision</span>
+              <span>Admisión 2026-II</span>
             </DialogTitle>
           </DialogHeader>
           <div className="py-4 sm:py-6">
@@ -290,22 +290,6 @@ export function CompactPrograms() {
                 <span className="text-green-800 font-semibold text-lg">Inscripciones Abiertas</span>
               </div>
 
-              {/* Fecha de Inscripción */}
-              <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
-                <div className="flex items-center justify-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                    <Calendar className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-blue-600 font-medium">Fecha de Inscripción</p>
-                    <p className="text-2xl font-bold text-blue-900">10 de febrero, 2026</p>
-                  </div>
-                </div>
-                <p className="text-blue-700 text-sm">
-                  El proceso de admisiones se abrió oficialmente el 10 de febrero de 2026
-                </p>
-              </div>
-
               {/* Fecha de Examen */}
               <div className="bg-orange-50 rounded-xl p-6 border border-orange-200">
                 <div className="flex items-center justify-center space-x-3 mb-4">
@@ -314,11 +298,11 @@ export function CompactPrograms() {
                   </div>
                   <div className="text-left">
                     <p className="text-sm text-orange-600 font-medium">Fecha de Examen de Admisión</p>
-                    <p className="text-2xl font-bold text-orange-900">28 de marzo, 2026</p>
+                    <p className="text-2xl font-bold text-orange-900">01 de agosto</p>
                   </div>
                 </div>
                 <p className="text-orange-700 text-sm">
-                  El examen de admisión se llevará a cabo el 28 de marzo de 2026
+                  El examen de admisión se llevará a cabo el 01 de agosto
                 </p>
               </div>
 

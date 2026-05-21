@@ -1,8 +1,8 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Play, Users, BookOpen, Award, Globe, Stethoscope, FlaskRound } from "lucide-react"
+import { ArrowRight, Play, Award, Stethoscope, FlaskRound } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
@@ -26,26 +26,21 @@ export function UniversityHero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
-    }, 5000) // Cambia cada 5 segundos
-
+    }, 5000)
     return () => clearInterval(interval)
   }, [carouselImages.length])
 
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   useEffect(() => {
     function update() {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
+      setDimensions({ width: window.innerWidth, height: window.innerHeight })
     }
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
 
-  // Evitar renderizar partículas hasta que tengamos dimensiones válidas (solo en cliente)
-  const canRenderParticles = dimensions.width > 0 && dimensions.height > 0;
+  const canRenderParticles = dimensions.width > 0 && dimensions.height > 0
 
   return (
     <section className="relative min-h-[400px] sm:min-h-[600px] lg:min-h-screen flex items-center justify-center overflow-hidden">
@@ -70,68 +65,43 @@ export function UniversityHero() {
             />
           </motion.div>
         ))}
-        {/* Overlay oscuro para mejorar legibilidad del texto */}
+        {/* Overlay oscuro */}
         <div className="absolute inset-0 bg-black/40 z-[2]" />
       </div>
 
-      {/* Animated Background Elements (partículas sobre el carrusel) */}
-      <div className="absolute inset-0 z-[1]">
-        {/* Floating Particles */}
+      {/* Partículas animadas */}
+      <div className="absolute inset-0 z-[3]">
         {canRenderParticles && [...Array(20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-white/10 rounded-full"
-            initial={{
-              x: Math.random() * dimensions.width,
-              y: Math.random() * dimensions.height,
-            }}
-            animate={{
-              x: Math.random() * dimensions.width,
-              y: Math.random() * dimensions.height,
-            }}
-            transition={{
-              duration: Math.random() * 10 + 20,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
+            initial={{ x: Math.random() * dimensions.width, y: Math.random() * dimensions.height }}
+            animate={{ x: Math.random() * dimensions.width, y: Math.random() * dimensions.height }}
+            transition={{ duration: Math.random() * 10 + 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
           />
         ))}
 
         {/* Gradient Orbs */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
         />
       </div>
 
-      {/* Main Content */}
+      {/* Contenido principal */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* University Badge */}
+          {/* Badge universitario */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -142,7 +112,7 @@ export function UniversityHero() {
             Universidad Interamericana para el Desarrollo
           </motion.div>
 
-          {/* Main Heading */}
+          {/* Título principal */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -152,7 +122,7 @@ export function UniversityHero() {
             {t("hero.title")}
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtítulo */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -162,36 +132,43 @@ export function UniversityHero() {
             {t("hero.subtitle")}
           </motion.p>
 
-          {/* Stats Row */}
+          {/* Fila de Sellos ISO */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 mb-6 sm:mb-12 max-w-4xl mx-auto px-2"
+            className="flex flex-row items-center justify-center gap-4 sm:gap-10 md:gap-16 mb-8 sm:mb-14 max-w-4xl mx-auto px-4"
           >
             {[
-              { icon: Users, number: "2,500+", label: "Estudiantes" },
-              { icon: BookOpen, number: "150+", label: "Publicaciones" },
-              { icon: Award, number: "25+", label: "Reconocimientos" },
-              { icon: Globe, number: "15+", label: "Países" },
-            ].map((stat, index) => (
+              { src: "/images/iso-ambiental.webp", alt: "ISO Ambiental" },
+              { src: "/images/iso-educacion.webp", alt: "ISO Educación" },
+              { src: "/images/iso-calidad.webp", alt: "ISO Calidad" },
+            ].map((iso, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                className="text-center"
+                className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 flex items-center justify-center transition-transform duration-300 hover:scale-110"
               >
-                <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white/10 rounded-lg mb-1 sm:mb-2 lg:mb-3 backdrop-blur-sm border border-white/20">
-                  <stat.icon className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-white" />
+                {/* Fondo blanco translúcido y suave, más pequeño que el contenedor */}
+                <div className="absolute inset-3 sm:inset-4 bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 shadow-md" />
+                {/* Logo ISO */}
+                <div className="relative w-full h-full z-10">
+                  <Image
+                    src={iso.src}
+                    alt={iso.alt}
+                    fill
+                    className="object-contain drop-shadow-lg"
+                    sizes="(max-width: 640px) 80px, (max-width: 768px) 112px, 176px"
+                    priority
+                  />
                 </div>
-                <div className="text-sm sm:text-xl lg:text-2xl font-bold text-white mb-0.5 sm:mb-1">{stat.number}</div>
-                <div className="text-blue-200 text-[10px] sm:text-xs lg:text-sm">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* Botones CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -230,20 +207,20 @@ export function UniversityHero() {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide ? "bg-white w-8" : "bg-white/50 hover:bg-white/75"
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === currentSlide ? "bg-white w-8" : "w-2 bg-white/50 hover:bg-white/75"
             }`}
             aria-label={`Ir a la diapositiva ${index + 1}`}
           />
         ))}
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Indicador de scroll */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
@@ -258,7 +235,7 @@ export function UniversityHero() {
         </motion.div>
       </motion.div>
 
-      {/* Careers Selection Modal */}
+      {/* Modal de carreras */}
       <Dialog open={careersModalOpen} onOpenChange={setCareersModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
@@ -266,10 +243,7 @@ export function UniversityHero() {
           </DialogHeader>
           <div className="space-y-4">
             <Button
-              onClick={() => {
-                router.push("/carreras/enfermeria")
-                setCareersModalOpen(false)
-              }}
+              onClick={() => { router.push("/carreras/enfermeria"); setCareersModalOpen(false) }}
               className="w-full h-16 bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium rounded-lg transition-all duration-300 hover:scale-105"
             >
               <div className="flex items-center justify-center space-x-3">
@@ -279,10 +253,7 @@ export function UniversityHero() {
             </Button>
 
             <Button
-              onClick={() => {
-                router.push("/carreras/farmacia-bioquimica")
-                setCareersModalOpen(false)
-              }}
+              onClick={() => { router.push("/carreras/farmacia-bioquimica"); setCareersModalOpen(false) }}
               className="w-full h-16 bg-[#4dcfd3] hover:bg-[#2ab3b7] text-white text-lg font-medium rounded-lg transition-all duration-300 hover:scale-105"
             >
               <div className="flex items-center justify-center space-x-3">
@@ -294,7 +265,7 @@ export function UniversityHero() {
         </DialogContent>
       </Dialog>
 
-      {/* Video Modal */}
+      {/* Modal de video institucional */}
       <Dialog open={videoModalOpen} onOpenChange={setVideoModalOpen}>
         <DialogContent className="sm:max-w-4xl p-0">
           <DialogHeader className="p-6 pb-0">
@@ -309,16 +280,13 @@ export function UniversityHero() {
                 <source src="/video/video.mp4" type="video/mp4" />
                 <p className="text-white p-4">
                   Tu navegador no soporta el elemento de video.
-                  <a href="/video/video.mp4" className="text-blue-400 underline ml-2">
-                    Descargar video
-                  </a>
+                  <a href="/video/video.mp4" className="text-blue-400 underline ml-2">Descargar video</a>
                 </p>
               </video>
             </div>
             <div className="mt-4 text-center">
               <p className="text-gray-600 text-sm">
-                Conoce más sobre nuestra institución y nuestro compromiso con la formación de líderes en ciencias de la
-                salud.
+                Conoce más sobre nuestra institución y nuestro compromiso con la formación de líderes en ciencias de la salud.
               </p>
             </div>
           </div>
