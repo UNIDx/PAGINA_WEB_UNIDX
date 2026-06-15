@@ -43,7 +43,7 @@ export function UniversityHero() {
   const canRenderParticles = dimensions.width > 0 && dimensions.height > 0
 
   return (
-    <section className="relative min-h-[400px] sm:min-h-[600px] lg:min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[350px] sm:min-h-[450px] flex items-center justify-center overflow-hidden pt-16 pb-20 sm:pt-20 sm:pb-28">
       {/* Carrusel de imágenes de fondo */}
       <div className="absolute inset-0 bg-gray-900">
         {carouselImages.map((image, index) => (
@@ -106,7 +106,7 @@ export function UniversityHero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center px-2 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-[10px] sm:text-sm font-medium mb-4 sm:mb-8 border border-white/20"
+            className="inline-flex items-center px-2 sm:px-4 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4 border border-white/20"
           >
             <Award className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
             Universidad Interamericana para el Desarrollo
@@ -117,7 +117,7 @@ export function UniversityHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-3 sm:mb-6 leading-tight px-2"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight px-2"
           >
             {t("hero.title")}
           </motion.h1>
@@ -127,7 +127,7 @@ export function UniversityHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xs sm:text-base md:text-xl lg:text-2xl text-blue-100 mb-6 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-2"
+            className="text-xs sm:text-sm md:text-base lg:text-lg text-blue-100 mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2"
           >
             {t("hero.subtitle")}
           </motion.p>
@@ -137,7 +137,7 @@ export function UniversityHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-row items-center justify-center gap-4 sm:gap-10 md:gap-16 mb-8 sm:mb-14 max-w-4xl mx-auto px-4"
+            className="flex flex-row items-center justify-center gap-4 sm:gap-8 md:gap-12 mb-6 sm:mb-10 max-w-4xl mx-auto px-4"
           >
             {[
               { src: "/images/iso-ambiental.webp", alt: "ISO Ambiental" },
@@ -149,7 +149,7 @@ export function UniversityHero() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 flex items-center justify-center transition-transform duration-300 hover:scale-110"
+                className="relative w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center transition-transform duration-300 hover:scale-110"
               >
                 {/* Fondo blanco translúcido y suave, más pequeño que el contenedor */}
                 <div className="absolute inset-3 sm:inset-4 bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 shadow-md" />
@@ -179,7 +179,7 @@ export function UniversityHero() {
               <Button
                 size="lg"
                 onClick={() => setCareersModalOpen(true)}
-                className="bg-white text-blue-900 hover:bg-blue-50 px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 text-xs sm:text-base lg:text-lg font-semibold rounded-lg sm:rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto"
+                className="bg-white text-blue-900 hover:bg-blue-50 px-4 sm:px-6 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-sm font-semibold rounded-lg sm:rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto"
               >
                 {t("hero.cta")}
                 <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
@@ -191,7 +191,7 @@ export function UniversityHero() {
                 variant="outline"
                 size="lg"
                 onClick={() => setVideoModalOpen(true)}
-                className="border-white/30 text-white hover:bg-white/10 px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 text-xs sm:text-base lg:text-lg font-semibold rounded-lg sm:rounded-xl backdrop-blur-sm transition-all duration-300 bg-transparent w-full sm:w-auto"
+                className="border-white/30 text-white hover:bg-white/10 px-4 sm:px-6 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-sm font-semibold rounded-lg sm:rounded-xl backdrop-blur-sm transition-all duration-300 bg-transparent w-full sm:w-auto"
               >
                 <Play className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
                 Ver video institucional
@@ -202,7 +202,7 @@ export function UniversityHero() {
       </div>
 
       {/* Indicadores del carrusel */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
         {carouselImages.map((_, index) => (
           <button
             key={index}
@@ -215,25 +215,7 @@ export function UniversityHero() {
         ))}
       </div>
 
-      {/* Indicador de scroll */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-          className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-            className="w-1 h-3 bg-white/50 rounded-full mt-2"
-          />
-        </motion.div>
-      </motion.div>
+
 
       {/* Modal de carreras */}
       <Dialog open={careersModalOpen} onOpenChange={setCareersModalOpen}>

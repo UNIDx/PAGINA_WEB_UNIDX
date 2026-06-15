@@ -1,14 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import {
-  ChevronLeft,
-  ChevronRight,
   Users,
   Clock,
   TrendingUp,
@@ -80,40 +78,14 @@ const programs = [
 
 export function CompactPrograms() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [admissionDialogOpen, setAdmissionDialogOpen] = useState(false)
   const router = useRouter()
-
-  useEffect(() => {
-    if (!isAutoPlaying) return
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % programs.length)
-    }, 6000)
-
-    return () => clearInterval(interval)
-  }, [isAutoPlaying])
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % programs.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + programs.length) % programs.length)
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index)
-  }
 
   const currentProgram = programs[currentIndex]
 
   return (
-    <section
-      className="relative h-screen overflow-hidden"
-      onMouseEnter={() => setIsAutoPlaying(false)}
-      onMouseLeave={() => setIsAutoPlaying(true)}
-    >
+    <section className="relative flex flex-col overflow-hidden bg-gray-900">
+      {/* Background Animated Layer */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -121,158 +93,148 @@ export function CompactPrograms() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0"
+          className="absolute inset-0 z-0"
         >
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img
-              src={currentProgram.image || "/placeholder.svg"}
-              alt={currentProgram.title}
-              className="w-full h-full object-cover"
-            />
-            <div className={`absolute inset-0 bg-gradient-to-r ${currentProgram.color} opacity-80`} />
-            <div className="absolute inset-0 bg-black/20" />
+          <img
+            src={currentProgram.image || "/placeholder.svg"}
+            alt={currentProgram.title}
+            className="w-full h-full object-cover"
+          />
+          <div className={`absolute inset-0 bg-gradient-to-r ${currentProgram.color} opacity-85`} />
+          <div className="absolute inset-0 bg-black/40" />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Foreground Content */}
+      <div className="relative z-10 flex-grow flex flex-col py-10 sm:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 w-full flex-grow flex flex-col">
+          
+          {/* Header & Tabs */}
+          <div className="text-center mb-5 sm:mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 drop-shadow-lg tracking-tight">
+              Nuestras Carreras de <span className="text-yellow-400">Pregrado</span>
+            </h2>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
+              {programs.map((program, index) => {
+                const Icon = program.icon
+                const isActive = currentIndex === index
+                return (
+                  <button
+                    key={program.id}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`flex items-center justify-center space-x-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 w-full sm:w-[260px] border ${
+                      isActive
+                        ? "bg-white text-blue-900 border-white shadow-2xl scale-105"
+                        : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border-white/30 hover:border-white/50"
+                    }`}
+                  >
+                    <Icon className={`w-5 h-5 ${isActive ? "text-blue-600" : "text-white"}`} />
+                    <span>{program.title}</span>
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
-          {/* Content */}
-          <div className="relative z-10 h-full flex items-center overflow-y-auto sm:overflow-y-visible py-32 sm:py-0">
-            <div className="max-w-7xl mx-auto px-4 w-full">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
-                {/* Main Content */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-white"
-                >
-                  <div className="flex items-center mb-6">
-                    <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full mr-4">
-                      <currentProgram.icon className="h-8 w-8 text-white" />
+          {/* Dynamic Content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="flex-grow flex items-center"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center w-full">
+                {/* Main Content Info */}
+                <div className="text-white">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-white/20 backdrop-blur-sm p-2.5 rounded-full mr-3 shadow-lg">
+                      <currentProgram.icon className="h-6 w-6 text-white" />
                     </div>
-                    <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30">
+                    <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 py-1 px-3 text-xs shadow-lg">
                       Acreditado por {currentProgram.accreditation}
                     </Badge>
                   </div>
 
-                  <h1 className="text-5xl md:text-6xl font-bold mb-4">{currentProgram.title}</h1>
-                  <h2 className="text-xl md:text-2xl text-white/90 mb-6">{currentProgram.subtitle}</h2>
-                  <p className="text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">{currentProgram.description}</p>
+                  <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold mb-2 drop-shadow-md">{currentProgram.title}</h3>
+                  <h4 className="text-base text-white/90 mb-3 font-medium drop-shadow">{currentProgram.subtitle}</h4>
+                  <p className="text-xs sm:text-sm text-white/80 mb-3 leading-relaxed max-w-2xl">{currentProgram.description}</p>
 
                   {/* Stats */}
-                  <div className="grid grid-cols-3 gap-6 mb-8">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold mb-1">{currentProgram.stats.experience}</div>
-                      <div className="text-white/80 text-sm">de experiencia</div>
+                  <div className="grid grid-cols-3 gap-2 mb-4">
+                    <div className="text-center bg-white/10 backdrop-blur-md rounded-lg p-2 border border-white/10 shadow-lg">
+                      <div className="text-base sm:text-lg font-bold mb-0.5">{currentProgram.stats.experience}</div>
+                      <div className="text-white/80 text-xs">de experiencia</div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold mb-1">{currentProgram.stats.graduates}</div>
-                      <div className="text-white/80 text-sm">egresados</div>
+                    <div className="text-center bg-white/10 backdrop-blur-md rounded-lg p-2 border border-white/10 shadow-lg">
+                      <div className="text-base sm:text-lg font-bold mb-0.5">{currentProgram.stats.graduates}</div>
+                      <div className="text-white/80 text-xs">egresados</div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold mb-1">{currentProgram.stats.employment}</div>
-                      <div className="text-white/80 text-sm">empleabilidad</div>
+                    <div className="text-center bg-white/10 backdrop-blur-md rounded-lg p-2 border border-white/10 shadow-lg">
+                      <div className="text-base sm:text-lg font-bold mb-0.5">{currentProgram.stats.employment}</div>
+                      <div className="text-white/80 text-xs">empleabilidad</div>
                     </div>
                   </div>
 
                   {/* Quick Info */}
-                  <div className="flex flex-wrap gap-4 mb-8">
-                    <div className="flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                      <Clock className="h-4 w-4 mr-2" />
-                      <span className="text-sm">{currentProgram.duration}</span>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <div className="flex items-center bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 shadow-md">
+                      <Clock className="h-3 w-3 mr-1.5" />
+                      <span className="text-xs font-medium">{currentProgram.duration}</span>
                     </div>
-                    <div className="flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                      <Users className="h-4 w-4 mr-2" />
-                      <span className="text-sm">{currentProgram.students} estudiantes</span>
+                    <div className="flex items-center bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 shadow-md">
+                      <Users className="h-3 w-3 mr-1.5" />
+                      <span className="text-xs font-medium">{currentProgram.students} estudiantes</span>
                     </div>
-                    <div className="flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                      <TrendingUp className="h-4 w-4 mr-2" />
-                      <span className="text-sm">{currentProgram.employability} empleabilidad</span>
+                    <div className="flex items-center bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 shadow-md">
+                      <TrendingUp className="h-3 w-3 mr-1.5" />
+                      <span className="text-xs font-medium">{currentProgram.employability} empleabilidad</span>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <Button
                       size="lg"
-                      className="bg-white text-gray-900 hover:bg-white/90 "
+                      className="bg-white text-gray-900 hover:bg-gray-100 hover:scale-105 transition-all duration-300 text-xs font-bold h-9 px-4 shadow-xl"
                       onClick={() => router.push(`/carreras/${currentProgram.id}`)}
                     >
-                      <BookOpen className="h-5 w-5 mr-2" />
+                      <BookOpen className="h-4 w-4 mr-2" />
                       Más Información
                     </Button>
                     <Button
                       size="lg"
                       variant="outline"
-                      className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
+                      className="border-white text-white hover:bg-white hover:text-gray-900 hover:scale-105 transition-all duration-300 bg-transparent text-xs font-bold h-9 px-4 shadow-xl"
                       onClick={() => setAdmissionDialogOpen(true)}
                     >
                       Proceso de Admisión
                     </Button>
                   </div>
-                </motion.div>
+                </div>
 
-                {/* Features Sidebar - Hidden on mobile */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="hidden lg:block"
-                >
-                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                    <h3 className="text-2xl font-bold text-white mb-6">Características Destacadas</h3>
+                {/* Features Sidebar */}
+                <div className="hidden lg:block h-full">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl h-full flex flex-col justify-center">
+                    <h3 className="text-xl font-bold text-white mb-6 border-b border-white/20 pb-3">Características Destacadas</h3>
                     <ul className="space-y-4">
                       {currentProgram.features.map((feature, index) => (
-                        <motion.li
-                          key={index}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                          className="flex items-center text-white/90"
-                        >
-                          <div className="w-2 h-2 bg-white rounded-full mr-3 flex-shrink-0" />
+                        <li key={index} className="flex items-start text-white/95 text-base font-medium group">
+                          <div className="mt-1.5 w-2.5 h-2.5 bg-yellow-400 rounded-full mr-3 flex-shrink-0 shadow-[0_0_8px_rgba(250,204,21,0.8)] group-hover:scale-125 transition-transform duration-300" />
                           <span>{feature}</span>
-                        </motion.li>
+                        </li>
                       ))}
                     </ul>
                   </div>
-                </motion.div>
+                </div>
               </div>
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Navigation Controls */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex items-center space-x-4">
-          {/* Dots Indicator */}
-          <div className="flex space-x-2">
-            {programs.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? "bg-white scale-125" : "bg-white/50 hover:bg-white/75"
-                }`}
-              />
-            ))}
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Arrow Controls */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
       {/* Admission Process Dialog */}
       <Dialog open={admissionDialogOpen} onOpenChange={setAdmissionDialogOpen}>
         <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">

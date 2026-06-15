@@ -11,6 +11,16 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 // Datos de ejemplo de noticias
 const newsData: NewsItem[] = [
   {
+    id: 6,
+    title: "GESTIÓN DE LA INVESTIGACIÓN EN UNID",
+    description: "Plataforma para la gestión de la investigación. Rendimiento, seguridad y escalabilidad para tus proyectos editoriales con Servidor Privado y Dedicado, Seguridad Avanzada, Escalabilidad Flexible y Soporte Especializado.",
+    image: "https://img.youtube.com/vi/29kR-WpkLjQ/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/29kR-WpkLjQ?autoplay=1&mute=1&cc_load_policy=0&rel=0&modestbranding=1",
+    date: "2026-06-15",
+    views: 135,
+    type: "video" as const,
+  },
+  {
     id: 1,
     title: "Inscripciones Abiertas 2026 - Proceso de Admisión",
     description: "Únete a la familia UNIDx. Inscripciones abiertas para el periodo académico 2026. El examen de admisión se realizará el 28 de marzo de 2026. Ofrecemos dos carreras profesionales: Enfermería y Farmacia y Bioquímica. ¡No pierdas esta oportunidad de formar parte de nuestra universidad!",
@@ -60,6 +70,7 @@ const newsData: NewsItem[] = [
     views: 98,
     type: "video" as const,
   },
+
 //   {
 //     id: 3,
 //     title: "Ceremonia de Graduación 2025",

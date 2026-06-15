@@ -421,34 +421,60 @@ export function ModernNavigation() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="hidden lg:flex items-center space-x-8"
             >
-              {/* Noticias - Resaltado */}
-              <Link
-                href="/noticias"
-                className="relative px-4 py-2 bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-yellow-500 hover:to-orange-500 text-gray-900 text-sm font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg group"
+              {/* Institucional Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => handleDropdownEnter("institucional")}
+                onMouseLeave={handleDropdownLeave}
               >
-                <span className="flex items-center gap-1">
-                  Noticias
-                  <span className="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                </span>
-              </Link>
+                <button 
+                  onClick={() => setActiveDropdown(activeDropdown === "institucional" ? null : "institucional")}
+                  className="flex items-center space-x-1 text-gray-700 hover:text-blue-900 text-sm font-medium transition-colors duration-200 py-2"
+                >
+                  <span>Institucional</span>
+                  <motion.div
+                    animate={{ rotate: activeDropdown === "institucional" ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown className="h-3 w-3" />
+                  </motion.div>
+                </button>
 
-              {/* Inicio */}
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-blue-900 text-sm font-medium transition-colors duration-200 relative group py-2"
-              >
-                Inicio
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-900 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-
-              {/* Nosotros */}
-              <Link
-                href="/nosotros"
-                className="text-gray-700 hover:text-blue-900 text-sm font-medium transition-colors duration-200 relative group py-2"
-              >
-                Nosotros
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-900 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
+                <AnimatePresence>
+                  {activeDropdown === "institucional" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50 overflow-hidden"
+                    >
+                      <Link
+                        href="/"
+                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-900 transition-colors duration-200"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        Inicio
+                      </Link>
+                      <Link
+                        href="/nosotros"
+                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-900 transition-colors duration-200"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        Nosotros
+                      </Link>
+                      <Link
+                        href="/noticias"
+                        className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-900 transition-colors duration-200"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <span>Noticias</span>
+                        <span className="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse ml-2"></span>
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
               {/* Recursos */}
               <div
@@ -618,27 +644,50 @@ export function ModernNavigation() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-900 transition-all duration-300 group-hover:w-full"></span>
               </Link>
 
-              {/* CTA Button */}
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={handleAdmissionClick}
-                  className="bg-blue-900 hover:bg-blue-800 text-white px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg relative overflow-hidden cursor-pointer"
+              {/* Actions Container */}
+              <div className="flex items-center space-x-4">
+                {/* CTA Button */}
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    onClick={handleAdmissionClick}
+                    className="bg-blue-900 hover:bg-blue-800 text-white px-4 xl:px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg relative overflow-hidden cursor-pointer"
+                  >
+                    <span className="relative z-10">Admisión 2026-II</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  </Button>
+                </motion.div>
+
+                <div className="h-8 w-px bg-gray-300 hidden xl:block"></div>
+
+                {/* Cientec Logo */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="transition-transform duration-200"
                 >
-                  <span className="relative z-10">Admisión 2026-II</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                </Button>
-              </motion.div>
+                  <a href="https://www.cientec.com.pe" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                    <Image
+                      src="/images/cientec-logo.webp"
+                      alt="CIENTEC"
+                      width={160}
+                      height={60}
+                      className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto object-contain"
+                    />
+                  </a>
+                </motion.div>
+              </div>
             </motion.div>
 
-            {/* Mobile Actions - Botón Noticias + Menu Hamburguesa */}
+            {/* Mobile Actions - Logo CIENTEC + Menu Hamburguesa */}
             <div className="flex lg:hidden items-center gap-2">
-              <Link
-                href="/noticias"
-                className="px-3 py-1.5 bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 text-xs font-bold rounded-full shadow-md flex items-center gap-1"
-              >
-                Noticias
-                <span className="inline-block w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
-              </Link>
+              <a href="https://www.cientec.com.pe" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <Image
+                  src="/images/cientec-logo.webp"
+                  alt="CIENTEC"
+                  width={120}
+                  height={40}
+                  className="h-8 sm:h-9 w-auto object-contain"
+                />
+              </a>
               
               {/* Mobile Menu */}
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -682,33 +731,36 @@ export function ModernNavigation() {
                       </div>
                     </div>
 
-                    {/* Main Navigation */}
-                    <Link
-                      href="/noticias"
-                      className="block bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-yellow-500 hover:to-orange-500 text-gray-900 font-bold py-3 px-4 rounded-lg transition-all duration-200 shadow-md"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <span className="flex items-center gap-2">
-                        Noticias
-                        <span className="text-xs bg-red-500 text-white px-2 py-0.5 rounded-full animate-pulse">Nuevo</span>
-                      </span>
-                    </Link>
-
-                    <Link
-                      href="/"
-                      className="block text-gray-700 hover:text-blue-900 font-medium py-3 transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Inicio
-                    </Link>
-
-                    <Link
-                      href="/nosotros"
-                      className="block text-gray-700 hover:text-blue-900 font-medium py-3 transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Nosotros
-                    </Link>
+                    {/* Institucional (Mobile) */}
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2 font-medium text-blue-900">
+                        <span className="ml-1">Institucional</span>
+                      </div>
+                      <div className="pl-4 border-l-2 border-gray-100 space-y-1">
+                        <Link
+                          href="/"
+                          className="block text-gray-600 hover:text-blue-900 text-sm py-2 px-2 transition-colors duration-200"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          Inicio
+                        </Link>
+                        <Link
+                          href="/nosotros"
+                          className="block text-gray-600 hover:text-blue-900 text-sm py-2 px-2 transition-colors duration-200"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          Nosotros
+                        </Link>
+                        <Link
+                          href="/noticias"
+                          className="flex items-center text-gray-600 hover:text-blue-900 text-sm py-2 px-2 transition-colors duration-200"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          Noticias
+                          <span className="inline-block w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse ml-2"></span>
+                        </Link>
+                      </div>
+                    </div>
 
                     <Link
                       href="/convocatoria"
