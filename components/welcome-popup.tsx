@@ -7,6 +7,24 @@ import { motion, AnimatePresence } from "framer-motion"
 
 export function WelcomePopup() {
   const [isOpen, setIsOpen] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const slides = [
+    {
+      id: 1,
+      src: "/images/admision-agosto.webp",
+      alt: "Admisión Agosto",
+      link: "https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad",
+      buttonText: "Inscríbete ahora"
+    },
+    {
+      id: 2,
+      src: "/images/popup-postgrado.webp",
+      alt: "Admisión Postgrado",
+      link: "https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad",
+      buttonText: "Inscríbete ahora"
+    }
+  ]
 
   useEffect(() => {
     // Check if user has already seen the welcome popup during this session
@@ -21,6 +39,30 @@ export function WelcomePopup() {
       return () => clearTimeout(timer)
     }
   }, [])
+
+  // Lock body scroll when popup is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  }, [isOpen])
+
+  // Slideshow interval
+  useEffect(() => {
+    if (!isOpen) return
+
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
+    }, 4000)
+
+    return () => clearInterval(timer)
+  }, [isOpen, slides.length])
 
   const handleClose = () => {
     setIsOpen(false)
@@ -41,58 +83,79 @@ export function WelcomePopup() {
             onClick={handleClose}
           />
 
-          {/* Close Button - positioned absolutely inside viewport */}
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.15 }}
-            onClick={handleClose}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[1000] bg-white/10 hover:bg-white/20 text-white hover:text-red-400 rounded-full p-2.5 border border-white/20 shadow-xl transition-all duration-300 hover:scale-110 cursor-pointer"
-            aria-label="Cerrar ventana de bienvenida"
-          >
-            <X className="w-6 h-6 sm:w-7 sm:h-7" />
-          </motion.button>
-
-          {/* Modal Image Container (Social Media Card Style) */}
+          {/* Modal Image Container */}
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.92 }}
             transition={{ type: "spring", damping: 25, stiffness: 280 }}
-            className="relative flex flex-col w-full max-w-[340px] bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 overflow-hidden max-h-[82vh] sm:max-h-[85vh]"
+            className="relative flex flex-col w-full max-w-[360px] bg-transparent rounded-md shadow-2xl overflow-hidden max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Post Image Body */}
-            <div className="relative w-full overflow-hidden bg-white">
-              <Image
-                src="/images/admision-agosto.webp"
-                alt="Admisión Agosto"
-                width={1200}
-                height={1200}
-                className="w-full h-auto block"
-                priority
-              />
-            </div>
+            {/* Close Button - inside popup top right */}
+            <button
+              onClick={handleClose}
+              className="absolute top-3 right-3 z-[1010] bg-black/30 hover:bg-black/50 text-white rounded-full p-1.5 border-[1.5px] border-white/80 transition-all duration-300 hover:scale-110 cursor-pointer backdrop-blur-sm"
+              aria-label="Cerrar ventana de bienvenida"
+            >
+              <X className="w-5 h-5" />
+            </button>
 
-            {/* Post Actions / Footer */}
-            <div className="p-4 bg-white border-t border-gray-100 flex flex-col">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="w-full"
-              >
-                <a
-                  href="https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 text-white font-bold text-sm sm:text-base rounded-xl shadow-md hover:shadow-blue-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer z-50 uppercase tracking-wide text-center"
+            {/* Post Image Body */}
+            <div className="relative w-full overflow-hidden bg-transparent rounded-md h-[560px] sm:h-[580px]">
+              <AnimatePresence>
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="absolute inset-0"
                 >
-                  Inscríbete Ahora
-                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
-              </motion.div>
+                  <Image
+                    src={slides[currentSlide].src}
+                    alt={slides[currentSlide].alt}
+                    fill
+                    className="object-cover block rounded-md"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+              
+              {/* Overlay Gradient at the bottom to ensure button readability if needed */}
+              <AnimatePresence>
+                {currentSlide === 0 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none rounded-b-md z-10"
+                  />
+                )}
+              </AnimatePresence>
+
+              {/* Button Overlaid at the bottom */}
+              <AnimatePresence>
+                {currentSlide === 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute bottom-6 left-0 right-0 px-6 flex justify-center z-20"
+                  >
+                    <a
+                      href={slides[currentSlide].link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-8 py-3.5 bg-[#0023bf] hover:bg-[#001da0] text-white font-bold text-[15px] sm:text-base rounded-full shadow-lg shadow-blue-900/40 hover:shadow-blue-900/60 hover:scale-[1.05] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide"
+                    >
+                      {slides[currentSlide].buttonText}
+                    </a>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
