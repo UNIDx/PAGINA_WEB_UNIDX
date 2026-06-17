@@ -89,7 +89,7 @@ export function WelcomePopup() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.92 }}
             transition={{ type: "spring", damping: 25, stiffness: 280 }}
-            className="relative flex flex-col w-full max-w-[360px] bg-transparent rounded-md shadow-2xl overflow-hidden max-h-[90vh]"
+            className="relative flex flex-col max-w-[calc(100vw-2rem)] md:max-w-[600px] lg:max-w-[750px] bg-transparent rounded-md shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button - inside popup top right */}
@@ -102,7 +102,14 @@ export function WelcomePopup() {
             </button>
 
             {/* Post Image Body */}
-            <div className="relative w-full overflow-hidden bg-transparent rounded-md h-[560px] sm:h-[580px]">
+            <div className="relative w-full flex justify-center items-center bg-transparent rounded-md min-h-[300px]">
+              {/* Invisible placeholder to auto-size the container exactly to the image's real proportions */}
+              <img
+                src={slides[0].src}
+                alt="placeholder"
+                className="w-auto h-auto max-w-full max-h-[90vh] md:max-h-[85vh] opacity-0 pointer-events-none"
+              />
+
               <AnimatePresence>
                 <motion.div
                   key={currentSlide}
@@ -116,7 +123,7 @@ export function WelcomePopup() {
                     src={slides[currentSlide].src}
                     alt={slides[currentSlide].alt}
                     fill
-                    className="object-cover block rounded-md"
+                    className="object-contain block rounded-md"
                     priority
                   />
                   
