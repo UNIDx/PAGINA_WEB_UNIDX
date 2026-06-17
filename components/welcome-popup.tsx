@@ -59,7 +59,7 @@ export function WelcomePopup() {
 
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 4000)
+    }, 6500)
 
     return () => clearInterval(timer)
   }, [isOpen, slides.length])
@@ -119,42 +119,26 @@ export function WelcomePopup() {
                     className="object-cover block rounded-md"
                     priority
                   />
-                </motion.div>
-              </AnimatePresence>
-              
-              {/* Overlay Gradient at the bottom to ensure button readability if needed */}
-              <AnimatePresence>
-                {currentSlide === 0 && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none rounded-b-md z-10"
-                  />
-                )}
-              </AnimatePresence>
+                  
+                  {currentSlide === 0 && (
+                    <>
+                      {/* Overlay Gradient at the bottom to ensure button readability if needed */}
+                      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none rounded-b-md z-10" />
 
-              {/* Button Overlaid at the bottom */}
-              <AnimatePresence>
-                {currentSlide === 0 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.4 }}
-                    className="absolute bottom-6 left-0 right-0 px-6 flex justify-center z-20"
-                  >
-                    <a
-                      href={slides[currentSlide].link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-8 py-3.5 bg-[#0023bf] hover:bg-[#001da0] text-white font-bold text-[15px] sm:text-base rounded-full shadow-lg shadow-blue-900/40 hover:shadow-blue-900/60 hover:scale-[1.05] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide"
-                    >
-                      {slides[currentSlide].buttonText}
-                    </a>
-                  </motion.div>
-                )}
+                      {/* Button Overlaid at the bottom */}
+                      <div className="absolute bottom-6 left-0 right-0 px-6 flex justify-center z-20">
+                        <a
+                          href={slides[currentSlide].link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-8 py-3.5 bg-[#0023bf] hover:bg-[#001da0] text-white font-bold text-[15px] sm:text-base rounded-full shadow-lg shadow-blue-900/40 hover:shadow-blue-900/60 hover:scale-[1.05] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide"
+                        >
+                          {slides[currentSlide].buttonText}
+                        </a>
+                      </div>
+                    </>
+                  )}
+                </motion.div>
               </AnimatePresence>
             </div>
           </motion.div>
