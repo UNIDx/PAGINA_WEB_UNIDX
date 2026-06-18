@@ -36,4 +36,4 @@ export default function Home() {
   )
 }
 
-//aaaaa ya jode ya
+//aaaaa ya jode ya xd
