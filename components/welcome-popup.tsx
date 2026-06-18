@@ -110,13 +110,13 @@ export function WelcomePopup() {
                 className="w-auto h-auto max-w-full max-h-[90vh] md:max-h-[85vh] opacity-0 pointer-events-none"
               />
 
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 <motion.div
                   key={currentSlide}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  initial={{ opacity: 0, x: "100%" }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: "-100%" }}
+                  transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
                   className="absolute inset-0"
                 >
                   <Image

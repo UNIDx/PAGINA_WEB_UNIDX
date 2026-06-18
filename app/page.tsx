@@ -34,6 +34,4 @@ export default function Home() {
       </div>
     </LanguageProvider>
   )
-}
-
-//aaaaa ya jode ya
+}

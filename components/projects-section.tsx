@@ -8,7 +8,7 @@ import { CheckCircle, Clock, Lightbulb, Calendar, FileText, X, ZoomIn } from "lu
 import { useEffect, useState } from "react"
 import Autoplay from "embla-carousel-autoplay"
 
-const statusConfig = {
+const statusConfig: Record<string, any> = {
   Realizado: {
     color: "bg-green-100 text-green-700 border-green-200",
     icon: CheckCircle,

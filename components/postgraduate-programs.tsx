@@ -65,10 +65,10 @@ export function PostgraduatePrograms() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  initial={{ opacity: 0, x: -50, y: 0 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
                   className="bg-white rounded-xl p-4 sm:p-5 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 flex flex-col w-full sm:w-[calc(50%-8px)]"
                 >
                   <div className="w-8 h-8 bg-blue-50 text-blue-600 rounded-md flex items-center justify-center mb-3 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
@@ -86,7 +86,13 @@ export function PostgraduatePrograms() {
           </div>
 
           {/* Image Area (Right) */}
-          <div className="w-full lg:w-[35%] flex flex-col justify-center mt-10 lg:mt-0">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="w-full lg:w-[35%] flex flex-col justify-center mt-10 lg:mt-0"
+          >
             <div className="relative w-full max-w-sm mx-auto lg:max-w-none flex flex-col items-center">
               {/* Image */}
               <div className="relative z-10 w-full flex justify-center transform transition-transform duration-500 hover:-translate-y-2">
@@ -99,7 +105,7 @@ export function PostgraduatePrograms() {
               {/* Thick Line Base */}
               <div className="w-[100%] h-4 sm:h-6 bg-blue-600 rounded-full shadow-md relative z-20 -mt-16 sm:-mt-20 lg:-mt-20"></div>
             </div>
-          </div>
+          </motion.div>
         </div>
         
       </div>

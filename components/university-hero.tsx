@@ -149,10 +149,8 @@ export function UniversityHero() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                className="relative w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center transition-transform duration-300 hover:scale-110"
+                className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 flex items-center justify-center bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 shadow-md transition-transform duration-300 hover:scale-110 p-2 sm:p-3 md:p-4"
               >
-                {/* Fondo blanco translúcido y suave, más pequeño que el contenedor */}
-                <div className="absolute inset-3 sm:inset-4 bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 shadow-md" />
                 {/* Logo ISO */}
                 <div className="relative w-full h-full z-10">
                   <Image
@@ -160,7 +158,7 @@ export function UniversityHero() {
                     alt={iso.alt}
                     fill
                     className="object-contain drop-shadow-lg"
-                    sizes="(max-width: 640px) 80px, (max-width: 768px) 112px, 176px"
+                    sizes="(max-width: 640px) 64px, (max-width: 768px) 96px, 144px"
                     priority
                   />
                 </div>
@@ -207,9 +205,8 @@ export function UniversityHero() {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide ? "bg-white w-8" : "w-2 bg-white/50 hover:bg-white/75"
-            }`}
+            className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-white w-8" : "w-2 bg-white/50 hover:bg-white/75"
+              }`}
             aria-label={`Ir a la diapositiva ${index + 1}`}
           />
         ))}

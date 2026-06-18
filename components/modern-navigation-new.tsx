@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -450,7 +450,7 @@ export function ModernNavigation() {
                 <span className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
               </Link>
 
-              {/* Recursos */
+              {/* Recursos */}
               <div
                 className="relative"
                 onMouseEnter={() => handleDropdownEnter("recursos")}
