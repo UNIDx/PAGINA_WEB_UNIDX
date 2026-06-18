@@ -96,59 +96,32 @@ export function UniversityHero() {
 
       {/* Contenido principal */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+        <div>
           {/* Badge universitario */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center px-2 sm:px-4 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4 border border-white/20"
-          >
+          <div className="inline-flex items-center px-2 sm:px-4 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4 border border-white/20">
             <Award className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
             Universidad Interamericana para el Desarrollo
-          </motion.div>
+          </div>
 
           {/* Título principal */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight px-2"
-          >
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight px-2">
             {t("hero.title")}
-          </motion.h1>
+          </h1>
 
           {/* Subtítulo */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xs sm:text-sm md:text-base lg:text-lg text-blue-100 mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2"
-          >
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-blue-100 mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
             {t("hero.subtitle")}
-          </motion.p>
+          </p>
 
           {/* Fila de Sellos ISO */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-row items-center justify-center gap-4 sm:gap-8 md:gap-12 mb-6 sm:mb-10 max-w-4xl mx-auto px-4"
-          >
+          <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 md:gap-12 mb-6 sm:mb-10 max-w-4xl mx-auto px-4">
             {[
               { src: "/images/iso-ambiental.webp", alt: "ISO Ambiental" },
               { src: "/images/iso-educacion.webp", alt: "ISO Educación" },
               { src: "/images/iso-calidad.webp", alt: "ISO Calidad" },
             ].map((iso, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                 className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 flex items-center justify-center bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 shadow-md transition-transform duration-300 hover:scale-110 p-2 sm:p-3 md:p-4"
               >
                 {/* Logo ISO */}
@@ -162,17 +135,12 @@ export function UniversityHero() {
                     priority
                   />
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Botones CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 px-2"
-          >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 px-2">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
@@ -195,8 +163,8 @@ export function UniversityHero() {
                 Ver video institucional
               </Button>
             </motion.div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Indicadores del carrusel */}
