@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import {
   Menu,
@@ -505,6 +505,17 @@ export function ModernNavigation() {
                             </div>
                             <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                           </Link>
+                          <Link
+                            href="http://proceedings.unidx.edu.pe/"
+                            target="_blank"
+                            className="flex items-center justify-between p-2 rounded-lg hover:bg-blue-50 hover:text-blue-900 transition-colors duration-200 group"
+                          >
+                            <div>
+                              <div className="font-medium text-sm">Libro de Resúmenes</div>
+                              <div className="text-xs text-gray-500">Proceedings</div>
+                            </div>
+                            <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </Link>
                         </div>
                       </div>
 
@@ -641,6 +652,7 @@ export function ModernNavigation() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-80 bg-white border-l border-gray-200">
+                <SheetTitle className="sr-only">Menú de navegación</SheetTitle>
                 <div className="flex flex-col h-full">
                   {/* Mobile Header */}
                   <div className="flex items-center justify-between pb-4 border-b border-gray-200">
@@ -734,6 +746,14 @@ export function ModernNavigation() {
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Fondo editorial FEUNIDx
+                        </Link>
+                        <Link
+                          href="http://proceedings.unidx.edu.pe/"
+                          target="_blank"
+                          className="block pl-4 text-gray-600 hover:text-blue-900 text-sm py-2 transition-colors duration-200"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          Libro de Resúmenes
                         </Link>
 
                         <div className="text-sm font-medium text-gray-700 pt-2">Revistas</div>
