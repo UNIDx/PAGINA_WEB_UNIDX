@@ -8,7 +8,6 @@ import { ProjectsSection } from "@/components/projects-section"
 import { PartnershipsSection } from "@/components/partnerships-section"
 import { CompactContact } from "@/components/compact-contact"
 import { ModernFooter } from "@/components/modern-footer"
-import { WelcomePopup } from "@/components/welcome-popup"
 import { PostgraduatePrograms } from "@/components/postgraduate-programs"
 
 
@@ -26,7 +25,6 @@ export default function Home() {
           <ProjectsSection />
           <PartnershipsSection />
           <CompactContact />
-          <WelcomePopup />
         </main>
         {/* Footer stays at the bottom */}
         <ModernFooter />

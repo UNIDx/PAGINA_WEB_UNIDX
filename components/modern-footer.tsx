@@ -180,7 +180,7 @@ export function ModernFooter() {
             <div className="space-y-1.5 sm:space-y-2 lg:space-y-3 text-[10px] sm:text-xs lg:text-sm">
               <div className="flex items-center space-x-1 sm:space-x-2">
                 <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 lg:h-4 lg:w-4 text-blue-400" />
-                <span className="text-gray-300">+51 945 987 048 / 01 9041269</span>
+                <span className="text-gray-300">+51 945 987 048</span>
               </div>
               <div className="flex items-center space-x-1 sm:space-x-2">
                 <Mail className="h-3 w-3 sm:h-3.5 sm:w-3.5 lg:h-4 lg:w-4 text-blue-400" />

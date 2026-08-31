@@ -523,7 +523,7 @@ export default function FarmaciaBioquimicaPage() {
                     <Phone className="w-5 h-5 text-[#4dcfd3]" />
                     <div>
                       <span className="font-medium">Coordinación Académica</span>
-                      <p className="text-sm text-gray-600">+51 945 987 048 / 01 9041269</p>
+                      <p className="text-sm text-gray-600">+51 945 987 048</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -580,7 +580,7 @@ export default function FarmaciaBioquimicaPage() {
                     onClick={() => setAdmissionDialogOpen(true)}
                   >
                     <GraduationCap className="w-4 h-4 mr-2" />
-                    Proceso de Admisión 2025
+                    Proceso de Admisión
                   </Button>
                   <Button
                     variant="outline"
@@ -655,22 +655,6 @@ export default function FarmaciaBioquimicaPage() {
                 <span className="text-orange-800 font-semibold text-lg">Próximamente</span>
               </div>
 
-              {/* Fecha de Lanzamiento */}
-              <div className="bg-[#f2fafa] rounded-xl p-6 border border-[#80dfe1]">
-                <div className="flex items-center justify-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-[#4dcfd3] rounded-full flex items-center justify-center">
-                    <Calendar className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-[#4dcfd3] font-medium">Fecha de Lanzamiento</p>
-                    <p className="text-2xl font-bold text-[#166769]">-- de ----, 202-</p>
-                  </div>
-                </div>
-                <p className="text-[#2ab3b7] text-sm">
-                  El proceso de admisiones se abrirá oficialmente el -- de ---- de 202-
-                </p>
-              </div>
-
               {/* Información Adicional */}
               <div className="space-y-4">
                 <div className="bg-gray-50 rounded-lg p-4">
@@ -679,8 +663,7 @@ export default function FarmaciaBioquimicaPage() {
                     <div className="text-left">
                       <p className="font-medium text-gray-900 text-sm">¿Quieres ser notificado?</p>
                       <p className="text-gray-600 text-xs mt-1">
-                        Regístrate para recibir información sobre fechas importantes, requisitos y modalidades de
-                        ingreso.
+                        Regístrate para recibir información sobre requisitos y modalidades de ingreso.
                       </p>
                     </div>
                   </div>
@@ -692,7 +675,7 @@ export default function FarmaciaBioquimicaPage() {
                   <div className="space-y-1 text-xs text-blue-800">
                     <div className="flex items-center space-x-2">
                       <Phone className="h-3 w-3" />
-                      <span>+51 945987048 / 01 9041269</span>
+                      <span>+51 945987048</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Mail className="h-3 w-3" />

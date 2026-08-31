@@ -89,7 +89,7 @@ export function CompactPrograms() {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
@@ -241,7 +241,7 @@ export function CompactPrograms() {
           <DialogHeader>
             <DialogTitle className="flex items-center justify-center space-x-2 text-xl">
               <Calendar className="h-6 w-6 text-blue-600" />
-              <span>Admisión 2026-II</span>
+              <span>Admisión</span>
             </DialogTitle>
           </DialogHeader>
           <div className="py-4 sm:py-6">
@@ -252,22 +252,6 @@ export function CompactPrograms() {
                 <span className="text-green-800 font-semibold text-lg">Inscripciones Abiertas</span>
               </div>
 
-              {/* Fecha de Examen */}
-              <div className="bg-orange-50 rounded-xl p-6 border border-orange-200">
-                <div className="flex items-center justify-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
-                    <BookOpen className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-orange-600 font-medium">Fecha de Examen de Admisión</p>
-                    <p className="text-2xl font-bold text-orange-900">01 de agosto</p>
-                  </div>
-                </div>
-                <p className="text-orange-700 text-sm">
-                  El examen de admisión se llevará a cabo el 01 de agosto
-                </p>
-              </div>
-
               {/* Información Adicional */}
               <div className="space-y-4">
                 <div className="bg-gray-50 rounded-lg p-4">
@@ -276,8 +260,7 @@ export function CompactPrograms() {
                     <div className="text-left">
                       <p className="font-medium text-gray-900 text-sm">¿Quieres ser notificado?</p>
                       <p className="text-gray-600 text-xs mt-1">
-                        Regístrate para recibir información sobre fechas importantes, requisitos y modalidades de
-                        ingreso.
+                        Regístrate para recibir información sobre requisitos y modalidades de ingreso.
                       </p>
                     </div>
                   </div>
@@ -289,7 +272,7 @@ export function CompactPrograms() {
                   <div className="space-y-1 text-xs text-green-800">
                     <div className="flex items-center space-x-2">
                       <Phone className="h-3 w-3" />
-                      <span>+51 945 987 048 / 01 9041269</span>
+                      <span>+51 945 987 048</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Mail className="h-3 w-3" />
@@ -302,10 +285,8 @@ export function CompactPrograms() {
               {/* Botón de Inscripción */}
               <div className="pt-4 space-y-3">
                 <Button
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => {
-                    window.open('https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad', '_blank', 'noopener,noreferrer')
-                  }}
+                  disabled
+                  className="w-full bg-gray-400 hover:bg-gray-400 text-white font-bold py-6 text-lg shadow-none cursor-not-allowed disabled:opacity-100"
                 >
                   <Users className="h-5 w-5 mr-2" />
                   Inscríbete Ahora

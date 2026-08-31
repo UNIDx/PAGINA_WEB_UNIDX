@@ -74,7 +74,7 @@ export function CompactContact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Teléfono</h4>
-                    <p className="text-gray-600">+51 945 987 048 / 01 9041269</p>
+                    <p className="text-gray-600">+51 945 987 048</p>
                     <p className="text-sm text-gray-500">Lunes a Viernes: 8:00 AM - 5:00 PM</p>
                   </div>
                 </div>

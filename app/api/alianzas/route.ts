@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
               <p style="color: #64748b; font-size: 14px; margin: 0;">
                 <strong>Oficina de Alianzas Estratégicas - UNIDX</strong><br>
                 Av. Bolivia 626, Lima 15082<br>
-                Teléfono: +51 945 987 048 / 01 9041269<br>
+                Teléfono: +51 945 987 048<br>
                 Email: informes@unidx.edu.pe
               </p>
             </div>

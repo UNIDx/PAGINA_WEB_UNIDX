@@ -63,7 +63,7 @@ export function ModernNavigation() {
     <>
       {/* Secondary Navigation Bar */}
       <motion.div
-        initial={{ y: -30, opacity: 0 }}
+        initial={false}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="bg-slate-800 text-white py-1 sm:py-2 text-[10px] sm:text-xs relative z-50"
@@ -71,7 +71,7 @@ export function ModernNavigation() {
         <div className="max-w-6xl mx-auto px-2 sm:px-4 flex justify-between items-center">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex items-center space-x-2 sm:space-x-4"
@@ -92,13 +92,13 @@ export function ModernNavigation() {
               onClick={handleAdmissionClick}
               className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 h-6 text-[10px] font-semibold rounded"
             >
-              Admision 2026
+              Admisión
             </Button>
           </div>
 
           {/* Secondary Menu Items */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="hidden lg:flex items-center space-x-4"
@@ -365,7 +365,7 @@ export function ModernNavigation() {
 
       {/* Main Navigation */}
       <motion.header
-        initial={{ y: -20, opacity: 0 }}
+        initial={false}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         className={`sticky top-0 z-40 transition-all duration-300 ${
@@ -376,7 +376,7 @@ export function ModernNavigation() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={false}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex-shrink-0"
@@ -416,7 +416,7 @@ export function ModernNavigation() {
 
             {/* Desktop Navigation */}
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="hidden lg:flex items-center space-x-8"
@@ -663,7 +663,7 @@ export function ModernNavigation() {
                     onClick={handleAdmissionClick}
                     className="bg-blue-900 hover:bg-blue-800 text-white px-4 xl:px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg relative overflow-hidden cursor-pointer"
                   >
-                    <span className="relative z-10">Admisión 2026-II</span>
+                    <span className="relative z-10">Admisión</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                   </Button>
                 </motion.div>
@@ -735,7 +735,7 @@ export function ModernNavigation() {
                     <div className="space-y-2 pb-4 border-b border-gray-200">
                       <div className="flex items-center space-x-2 text-sm text-gray-600">
                         <Phone className="h-4 w-4" />
-                        <span>+51 945 987 048 / 01 9041269</span>
+                        <span>+51 945 987 048</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm text-gray-600">
                         <Mail className="h-4 w-4" />
@@ -931,7 +931,7 @@ export function ModernNavigation() {
                       }}
                       className="w-full bg-blue-900 hover:bg-blue-800 text-white transition-all duration-200 hover:shadow-lg relative overflow-hidden cursor-pointer"
                     >
-                      <span className="relative z-10">Admisión 2026-II</span>
+                      <span className="relative z-10">Admisión</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                     </Button>
                   </div>
@@ -949,7 +949,7 @@ export function ModernNavigation() {
           <DialogHeader>
             <DialogTitle className="flex items-center justify-center space-x-2 text-xl">
               <Calendar className="h-6 w-6 text-blue-600" />
-              <span>Admisión 2026-II</span>
+              <span>Admisión</span>
             </DialogTitle>
           </DialogHeader>
           <div className="py-4 sm:py-6">
@@ -960,22 +960,6 @@ export function ModernNavigation() {
                 <span className="text-green-800 font-semibold text-lg">Inscripciones Abiertas</span>
               </div>
 
-              {/* Fecha de Examen */}
-              <div className="bg-orange-50 rounded-xl p-6 border border-orange-200">
-                <div className="flex items-center justify-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
-                    <BookOpen className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-orange-600 font-medium">Fecha de Examen de Admisión</p>
-                    <p className="text-2xl font-bold text-orange-900">01 de agosto</p>
-                  </div>
-                </div>
-                <p className="text-orange-700 text-sm">
-                  El examen de admisión se llevará a cabo el 01 de agosto
-                </p>
-              </div>
-
               {/* Información Adicional */}
               <div className="space-y-4">
                 <div className="bg-gray-50 rounded-lg p-4">
@@ -984,8 +968,7 @@ export function ModernNavigation() {
                     <div className="text-left">
                       <p className="font-medium text-gray-900 text-sm">¿Quieres ser notificado?</p>
                       <p className="text-gray-600 text-xs mt-1">
-                        Regístrate para recibir información sobre fechas importantes, requisitos y modalidades de
-                        ingreso.
+                        Regístrate para recibir información sobre requisitos y modalidades de ingreso.
                       </p>
                     </div>
                   </div>
@@ -997,7 +980,7 @@ export function ModernNavigation() {
                   <div className="space-y-1 text-xs text-green-800">
                     <div className="flex items-center space-x-2">
                       <Phone className="h-3 w-3" />
-                      <span>+51 945 987 048 / 01 9041269</span>
+                      <span>+51 945 987 048</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Mail className="h-3 w-3" />
@@ -1010,10 +993,8 @@ export function ModernNavigation() {
               {/* Botón de Inscripción */}
               <div className="pt-4 space-y-3">
                 <Button
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => {
-                    window.open('https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad', '_blank', 'noopener,noreferrer')
-                  }}
+                  disabled
+                  className="w-full bg-gray-400 hover:bg-gray-400 text-white font-bold py-6 text-lg shadow-none cursor-not-allowed disabled:opacity-100"
                 >
                   <GraduationCap className="h-5 w-5 mr-2" />
                   Inscríbete Ahora

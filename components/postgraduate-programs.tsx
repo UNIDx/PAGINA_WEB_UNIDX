@@ -48,7 +48,7 @@ export function PostgraduatePrograms() {
               Nuestra Escuela de <span className="text-blue-600">Posgrado</span>
             </h2>
             <div className="inline-block px-4 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold mb-4 shadow-sm">
-              Admisión 2026 Abierta
+              Admisión Abierta
             </div>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
               Impulsa tu carrera con programas diseñados para transformar el sistema de salud. Fórmate como líder en investigación, gestión estratégica y atención avanzada para responder a los grandes desafíos sanitarios del país.
