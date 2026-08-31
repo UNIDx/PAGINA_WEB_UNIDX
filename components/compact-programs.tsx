@@ -84,7 +84,7 @@ export function CompactPrograms() {
   const currentProgram = programs[currentIndex]
 
   return (
-    <section className="relative flex flex-col overflow-hidden bg-gray-900">
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-gray-900">
       {/* Background Animated Layer */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -140,7 +140,7 @@ export function CompactPrograms() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
@@ -285,8 +285,14 @@ export function CompactPrograms() {
               {/* Botón de Inscripción */}
               <div className="pt-4 space-y-3">
                 <Button
-                  disabled
-                  className="w-full bg-gray-400 hover:bg-gray-400 text-white font-bold py-6 text-lg shadow-none cursor-not-allowed disabled:opacity-100"
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  onClick={() => {
+                    window.open(
+                      "https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad",
+                      "_blank",
+                      "noopener,noreferrer",
+                    )
+                  }}
                 >
                   <Users className="h-5 w-5 mr-2" />
                   Inscríbete Ahora

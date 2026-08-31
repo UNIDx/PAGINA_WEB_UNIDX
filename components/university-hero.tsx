@@ -43,7 +43,7 @@ export function UniversityHero() {
   const canRenderParticles = dimensions.width > 0 && dimensions.height > 0
 
   return (
-    <section className="relative min-h-[350px] sm:min-h-[450px] flex items-center justify-center overflow-hidden pt-16 pb-20 sm:pt-20 sm:pb-28">
+    <section className="relative min-h-[400px] sm:min-h-[600px] lg:min-h-screen flex items-center justify-center overflow-hidden">
       {/* Carrusel de imágenes de fondo */}
       <div className="absolute inset-0 bg-gray-900">
         {carouselImages.map((image, index) => (
@@ -98,23 +98,23 @@ export function UniversityHero() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
         <div>
           {/* Badge universitario */}
-          <div className="inline-flex items-center px-2 sm:px-4 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4 border border-white/20">
+          <div className="inline-flex items-center px-2 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-[10px] sm:text-sm font-medium mb-4 sm:mb-8 border border-white/20">
             <Award className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
             Universidad Interamericana para el Desarrollo
           </div>
 
           {/* Título principal */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight px-2">
+          <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-3 sm:mb-6 leading-tight px-2">
             {t("hero.title")}
           </h1>
 
           {/* Subtítulo */}
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-blue-100 mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
+          <p className="text-xs sm:text-base md:text-xl lg:text-2xl text-blue-100 mb-6 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-2">
             {t("hero.subtitle")}
           </p>
 
           {/* Fila de Sellos ISO */}
-          <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 md:gap-12 mb-6 sm:mb-10 max-w-4xl mx-auto px-4">
+          <div className="flex flex-row items-center justify-center gap-4 sm:gap-10 md:gap-16 mb-8 sm:mb-14 max-w-4xl mx-auto px-4">
             {[
               { src: "/images/iso-ambiental.webp", alt: "ISO Ambiental" },
               { src: "/images/iso-educacion.webp", alt: "ISO Educación" },
@@ -122,7 +122,7 @@ export function UniversityHero() {
             ].map((iso, index) => (
               <div
                 key={index}
-                className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 flex items-center justify-center bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 shadow-md transition-transform duration-300 hover:scale-110 p-2 sm:p-3 md:p-4"
+                className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 flex items-center justify-center bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 shadow-md transition-transform duration-300 hover:scale-110 p-3 sm:p-4"
               >
                 {/* Logo ISO */}
                 <div className="relative w-full h-full z-10">
@@ -145,7 +145,7 @@ export function UniversityHero() {
               <Button
                 size="lg"
                 onClick={() => setCareersModalOpen(true)}
-                className="bg-white text-blue-900 hover:bg-blue-50 px-4 sm:px-6 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-sm font-semibold rounded-lg sm:rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto"
+                className="bg-white text-blue-900 hover:bg-blue-50 px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 text-xs sm:text-base lg:text-lg font-semibold rounded-lg sm:rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto"
               >
                 {t("hero.cta")}
                 <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
@@ -157,7 +157,7 @@ export function UniversityHero() {
                 variant="outline"
                 size="lg"
                 onClick={() => setVideoModalOpen(true)}
-                className="border-white/30 text-white hover:bg-white/10 px-4 sm:px-6 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-sm font-semibold rounded-lg sm:rounded-xl backdrop-blur-sm transition-all duration-300 bg-transparent w-full sm:w-auto"
+                className="border-white/30 text-white hover:bg-white/10 px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 text-xs sm:text-base lg:text-lg font-semibold rounded-lg sm:rounded-xl backdrop-blur-sm transition-all duration-300 bg-transparent w-full sm:w-auto"
               >
                 <Play className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
                 Ver video institucional
@@ -168,7 +168,7 @@ export function UniversityHero() {
       </div>
 
       {/* Indicadores del carrusel */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
         {carouselImages.map((_, index) => (
           <button
             key={index}

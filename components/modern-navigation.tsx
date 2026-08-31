@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import {
   Menu,
   Globe,
@@ -55,12 +55,8 @@ export function ModernNavigation() {
     setActiveSecondaryDropdown(null)
   }
 
-  const handleAdmissionClick = () => {
-    setIsAdmissionDialogOpen(true)
-  }
-
   return (
-    <>
+    <Dialog open={isAdmissionDialogOpen} onOpenChange={setIsAdmissionDialogOpen}>
       {/* Secondary Navigation Bar */}
       <motion.div
         initial={false}
@@ -88,12 +84,14 @@ export function ModernNavigation() {
 
           {/* Botón Admisiones 2025 para móvil */}
           <div className="lg:hidden">
-            <Button
-              onClick={handleAdmissionClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 h-6 text-[10px] font-semibold rounded"
-            >
-              Admisión
-            </Button>
+            <DialogTrigger asChild>
+              <Button
+                type="button"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 h-6 text-[10px] font-semibold rounded"
+              >
+                Admisión
+              </Button>
+            </DialogTrigger>
           </div>
 
           {/* Secondary Menu Items */}
@@ -659,13 +657,15 @@ export function ModernNavigation() {
               <div className="flex items-center space-x-4">
                 {/* CTA Button */}
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    onClick={handleAdmissionClick}
-                    className="bg-blue-900 hover:bg-blue-800 text-white px-4 xl:px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg relative overflow-hidden cursor-pointer"
-                  >
-                    <span className="relative z-10">Admisión</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                  </Button>
+                  <DialogTrigger asChild>
+                    <Button
+                      type="button"
+                      className="bg-blue-900 hover:bg-blue-800 text-white px-4 xl:px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg relative overflow-hidden cursor-pointer"
+                    >
+                      <span className="relative z-10">Admisión</span>
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                    </Button>
+                  </DialogTrigger>
                 </motion.div>
 
                 <div className="h-8 w-px bg-gray-300 hidden xl:block"></div>
@@ -924,16 +924,16 @@ export function ModernNavigation() {
 
                   {/* Mobile Footer */}
                   <div className="border-t border-gray-200 pt-4">
-                    <Button
-                      onClick={() => {
-                        setIsMobileMenuOpen(false)
-                        handleAdmissionClick()
-                      }}
-                      className="w-full bg-blue-900 hover:bg-blue-800 text-white transition-all duration-200 hover:shadow-lg relative overflow-hidden cursor-pointer"
-                    >
-                      <span className="relative z-10">Admisión</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                    </Button>
+                    <DialogTrigger asChild>
+                      <Button
+                        type="button"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="w-full bg-blue-900 hover:bg-blue-800 text-white transition-all duration-200 hover:shadow-lg relative overflow-hidden cursor-pointer"
+                      >
+                        <span className="relative z-10">Admisión</span>
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                      </Button>
+                    </DialogTrigger>
                   </div>
                 </div>
               </SheetContent>
@@ -944,8 +944,7 @@ export function ModernNavigation() {
       </motion.header>
 
       {/* Dialog Component */}
-      <Dialog open={isAdmissionDialogOpen} onOpenChange={setIsAdmissionDialogOpen}>
-        <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
+        <DialogContent className="z-[100] sm:max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center justify-center space-x-2 text-xl">
               <Calendar className="h-6 w-6 text-blue-600" />
@@ -993,8 +992,14 @@ export function ModernNavigation() {
               {/* Botón de Inscripción */}
               <div className="pt-4 space-y-3">
                 <Button
-                  disabled
-                  className="w-full bg-gray-400 hover:bg-gray-400 text-white font-bold py-6 text-lg shadow-none cursor-not-allowed disabled:opacity-100"
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  onClick={() => {
+                    window.open(
+                      "https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad",
+                      "_blank",
+                      "noopener,noreferrer",
+                    )
+                  }}
                 >
                   <GraduationCap className="h-5 w-5 mr-2" />
                   Inscríbete Ahora
@@ -1010,7 +1015,6 @@ export function ModernNavigation() {
             </div>
           </div>
         </DialogContent>
-      </Dialog>
-    </>
+    </Dialog>
   )
 }
