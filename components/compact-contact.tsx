@@ -59,7 +59,7 @@ export function CompactContact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="space-y-8"
@@ -74,7 +74,7 @@ export function CompactContact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Teléfono</h4>
-                    <p className="text-gray-600">+51 945 987 048 / 01 9041269</p>
+                    <p className="text-gray-600">+51 945 987 048</p>
                     <p className="text-sm text-gray-500">Lunes a Viernes: 8:00 AM - 5:00 PM</p>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ export function CompactContact() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >

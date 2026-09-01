@@ -39,7 +39,7 @@ export function PostgraduatePrograms() {
         {/* Header section */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -48,7 +48,7 @@ export function PostgraduatePrograms() {
               Nuestra Escuela de <span className="text-blue-600">Posgrado</span>
             </h2>
             <div className="inline-block px-4 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold mb-4 shadow-sm">
-              Admisión 2026 Abierta
+              Admisión Abierta
             </div>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
               Impulsa tu carrera con programas diseñados para transformar el sistema de salud. Fórmate como líder en investigación, gestión estratégica y atención avanzada para responder a los grandes desafíos sanitarios del país.
@@ -65,7 +65,7 @@ export function PostgraduatePrograms() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -50, y: 0 }}
+                  initial={{ x: -50, y: 0 }}
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
@@ -87,7 +87,7 @@ export function PostgraduatePrograms() {
 
           {/* Image Area (Right) */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}

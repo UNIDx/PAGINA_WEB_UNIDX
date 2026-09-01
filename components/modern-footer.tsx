@@ -41,7 +41,7 @@ export function ModernFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {/* University Info */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="space-y-2 sm:space-y-4"
@@ -76,7 +76,7 @@ export function ModernFooter() {
 
           {/* Quick Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="space-y-2 sm:space-y-4"
@@ -108,7 +108,7 @@ export function ModernFooter() {
 
           {/* Resources */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-2 sm:space-y-4"
@@ -171,7 +171,7 @@ export function ModernFooter() {
 
           {/* Contact */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="space-y-2 sm:space-y-4"
@@ -180,7 +180,7 @@ export function ModernFooter() {
             <div className="space-y-1.5 sm:space-y-2 lg:space-y-3 text-[10px] sm:text-xs lg:text-sm">
               <div className="flex items-center space-x-1 sm:space-x-2">
                 <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 lg:h-4 lg:w-4 text-blue-400" />
-                <span className="text-gray-300">+51 945 987 048 / 01 9041269</span>
+                <span className="text-gray-300">+51 945 987 048</span>
               </div>
               <div className="flex items-center space-x-1 sm:space-x-2">
                 <Mail className="h-3 w-3 sm:h-3.5 sm:w-3.5 lg:h-4 lg:w-4 text-blue-400" />
@@ -200,7 +200,7 @@ export function ModernFooter() {
 
         {/* Bottom Bar */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"

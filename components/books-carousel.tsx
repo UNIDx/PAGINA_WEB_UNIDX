@@ -135,7 +135,7 @@ export function BooksCarousel() {
 			<div className="max-w-6xl mx-auto px-4 relative z-10">
 				{/* Header */}
 				<motion.div
-					initial={{ opacity: 0, y: 20 }}
+					initial={{ y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8 }}
 					className="text-center mb-12"
@@ -153,7 +153,7 @@ export function BooksCarousel() {
 						{stats.map((stat, index) => (
 							<motion.div
 								key={index}
-								initial={{ opacity: 0, scale: 0.8 }}
+								initial={{ scale: 0.8 }}
 								whileInView={{ opacity: 1, scale: 1 }}
 								transition={{ duration: 0.8, delay: index * 0.2 }}
 								className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
@@ -174,7 +174,7 @@ export function BooksCarousel() {
 
 				{/* Books Carousel */}
 				<motion.div
-					initial={{ opacity: 0, y: 40 }}
+					initial={{ y: 40 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1, delay: 0.3 }}
 				>
@@ -200,7 +200,7 @@ export function BooksCarousel() {
 									className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
 								>
 									<motion.div
-										initial={{ opacity: 0, rotateY: -30, z: -100 }}
+										initial={{ rotateY: -30, z: -100 }}
 										whileInView={{ opacity: 1, rotateY: 0, z: 0 }}
 										transition={{ duration: 1, delay: index * 0.2 }}
 										whileHover={{
@@ -383,7 +383,7 @@ export function BooksCarousel() {
 
 				{/* Call to Action */}
 				<motion.div
-					initial={{ opacity: 0, y: 20 }}
+					initial={{ y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, delay: 0.5 }}
 					className="text-center mt-12"

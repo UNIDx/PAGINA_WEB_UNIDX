@@ -122,7 +122,7 @@ export function PartnershipsSection() {
 				{/* Header */}
 				<div className="text-center mb-10">
 					<motion.div
-						initial={{ opacity: 0, y: 20 }}
+						initial={{ y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.6 }}
@@ -132,7 +132,7 @@ export function PartnershipsSection() {
 						Alianzas Estratégicas
 					</motion.div>
 					<motion.h2
-						initial={{ opacity: 0, y: 20 }}
+						initial={{ y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.6, delay: 0.1 }}
@@ -141,7 +141,7 @@ export function PartnershipsSection() {
 						Nuestros Convenios
 					</motion.h2>
 					<motion.p
-						initial={{ opacity: 0, y: 20 }}
+						initial={{ y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.6, delay: 0.2 }}
@@ -156,7 +156,7 @@ export function PartnershipsSection() {
 					{partnerships.map((partnership, index) => (
 						<motion.div
 							key={partnership.id}
-							initial={{ opacity: 0, y: 30 }}
+							initial={{ y: 30 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -240,7 +240,7 @@ export function PartnershipsSection() {
 
 				{/* Compact Call to Action */}
 				<motion.div
-					initial={{ opacity: 0, y: 20 }}
+					initial={{ y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6, delay: 0.4 }}
 					className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/20"

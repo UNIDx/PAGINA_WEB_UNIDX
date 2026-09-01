@@ -253,7 +253,7 @@ export default function DefensoriaPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Teléfono</p>
-                    <p className="text-gray-600">+51 945 987 048 / 01 9041269</p>
+                    <p className="text-gray-600">+51 945 987 048</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">

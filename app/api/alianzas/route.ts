@@ -1,10 +1,19 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: NextRequest) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+      console.error('RESEND_API_KEY no está configurada');
+      return NextResponse.json(
+        { error: 'El servicio de correo no está configurado' },
+        { status: 503 }
+      );
+    }
+
+    const resend = new Resend(apiKey);
     const body = await request.json();
     const { 
       tipoOrganizacion,
@@ -148,7 +157,7 @@ export async function POST(request: NextRequest) {
               <p style="color: #64748b; font-size: 14px; margin: 0;">
                 <strong>Oficina de Alianzas Estratégicas - UNIDX</strong><br>
                 Av. Bolivia 626, Lima 15082<br>
-                Teléfono: +51 945 987 048 / 01 9041269<br>
+                Teléfono: +51 945 987 048<br>
                 Email: informes@unidx.edu.pe
               </p>
             </div>

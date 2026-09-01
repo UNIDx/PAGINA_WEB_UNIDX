@@ -1244,7 +1244,7 @@ export default function InvestigacionPage() {
                     <Phone className="h-5 w-5 text-gray-400" />
                     <div>
                       <div className="font-medium">Teléfono</div>
-                      <div className="text-gray-600">+51 945 987 048 / 01 9041269</div>
+                      <div className="text-gray-600">+51 945 987 048</div>
                     </div>
                   </div>
 

@@ -679,7 +679,7 @@ export function ModernNavigation() {
                     <div className="space-y-2 pb-4 border-b border-gray-200">
                       <div className="flex items-center space-x-2 text-sm text-gray-600">
                         <Phone className="h-4 w-4" />
-                        <span>+51 945 987 048 / 01 9041269</span>
+                        <span>+51 945 987 048</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm text-gray-600">
                         <Mail className="h-4 w-4" />
@@ -953,7 +953,7 @@ export function ModernNavigation() {
                   <div className="space-y-1 text-xs text-green-800">
                     <div className="flex items-center space-x-2">
                       <Phone className="h-3 w-3" />
-                      <span>+51 945 987 048 / 01 9041269</span>
+                      <span>+51 945 987 048</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Mail className="h-3 w-3" />
