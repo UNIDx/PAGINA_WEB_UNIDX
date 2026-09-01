@@ -9,12 +9,14 @@ import { PartnershipsSection } from "@/components/partnerships-section"
 import { CompactContact } from "@/components/compact-contact"
 import { ModernFooter } from "@/components/modern-footer"
 import { PostgraduatePrograms } from "@/components/postgraduate-programs"
+import { WelcomePopup } from "@/components/welcome-popup"
 
 
 export default function Home() {
   return (
     <LanguageProvider>
       <div className="min-h-screen flex flex-col bg-white">
+        <WelcomePopup />
         <main className="flex-grow">
           <ModernNavigation />
           <UniversityHero />

@@ -1,155 +1,110 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { X } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
+
+const POPUP_SESSION_KEY = "hasSeenCareersPopup"
 
 export function WelcomePopup() {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  const slides = [
-    {
-      id: 1,
-      src: "/images/admision-agosto.webp",
-      alt: "Admisión Agosto",
-      link: "https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad",
-      buttonText: "Inscríbete ahora"
-    },
-    {
-      id: 2,
-      src: "/images/popup-postgrado.webp",
-      alt: "Admisión Postgrado",
-      link: "https://erpeduca.unidx.edu.pe/admision/proceso/InscripcionPostulante/ingresoExterno/inscripcionPostulanteExterno/universidad",
-      buttonText: "Inscríbete ahora"
-    }
-  ]
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    // Check if user has already seen the welcome popup during this session
-    const hasSeenWelcome = sessionStorage.getItem("hasSeenWelcomePopup")
+    if (sessionStorage.getItem(POPUP_SESSION_KEY)) return
 
-    if (!hasSeenWelcome) {
-      // Show welcome popup with a short, smooth delay
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-      }, 500)
-
-      return () => clearTimeout(timer)
-    }
+    const timer = window.setTimeout(() => setIsOpen(true), 350)
+    return () => window.clearTimeout(timer)
   }, [])
 
-  // Lock body scroll when popup is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "unset"
-    }
-
-    return () => {
-      document.body.style.overflow = "unset"
-    }
-  }, [isOpen])
-
-  // Slideshow interval
   useEffect(() => {
     if (!isOpen) return
 
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6500)
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    closeButtonRef.current?.focus()
 
-    return () => clearInterval(timer)
-  }, [isOpen, slides.length])
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") handleClose()
+    }
+
+    window.addEventListener("keydown", closeOnEscape)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener("keydown", closeOnEscape)
+    }
+  }, [isOpen])
 
   const handleClose = () => {
+    sessionStorage.setItem(POPUP_SESSION_KEY, "true")
     setIsOpen(false)
-    // Mark as seen for the current browser session
-    sessionStorage.setItem("hasSeenWelcomePopup", "true")
   }
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-8 select-none">
-          {/* Overlay Background with smooth backdrop blur */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        <motion.div
+          className="fixed inset-0 z-[1000] flex items-center justify-center p-3 sm:p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Carreras profesionales de UNID"
+        >
+          <button
+            type="button"
+            className="absolute inset-0 cursor-default bg-slate-950/80 backdrop-blur-sm"
             onClick={handleClose}
+            aria-label="Cerrar anuncio"
           />
 
-          {/* Modal Image Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.92 }}
-            transition={{ type: "spring", damping: 25, stiffness: 280 }}
-            className="relative flex flex-col max-w-[calc(100vw-2rem)] md:max-w-[600px] lg:max-w-[750px] bg-transparent rounded-md shadow-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
+            className="relative w-auto max-w-[min(92vw,650px)] overflow-hidden rounded-2xl bg-white shadow-[0_24px_80px_rgba(0,0,0,0.5)] ring-1 ring-white/30"
+            initial={{ opacity: 0, scale: 0.9, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 14 }}
+            transition={{ type: "spring", stiffness: 280, damping: 25 }}
+            onClick={(event) => event.stopPropagation()}
           >
-            {/* Close Button - inside popup top right */}
             <button
+              ref={closeButtonRef}
+              type="button"
               onClick={handleClose}
-              className="absolute top-3 right-3 z-[1010] bg-black/30 hover:bg-black/50 text-white rounded-full p-1.5 border-[1.5px] border-white/80 transition-all duration-300 hover:scale-110 cursor-pointer backdrop-blur-sm"
-              aria-label="Cerrar ventana de bienvenida"
+              className="absolute right-2.5 top-2.5 z-10 grid h-10 w-10 place-items-center rounded-full border border-white/50 bg-slate-950/70 text-white shadow-lg backdrop-blur-md transition hover:scale-105 hover:bg-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-4 sm:top-4"
+              aria-label="Cerrar popup"
             >
-              <X className="w-5 h-5" />
+              <X className="h-5 w-5" aria-hidden="true" />
             </button>
 
-            {/* Post Image Body */}
-            <div className="relative w-full flex justify-center items-center bg-transparent rounded-md min-h-[300px]">
-              {/* Invisible placeholder to auto-size the container exactly to the image's real proportions */}
-              <img
-                src={slides[0].src}
-                alt="placeholder"
-                className="w-auto h-auto max-w-full max-h-[90vh] md:max-h-[85vh] opacity-0 pointer-events-none"
-              />
+            <Image
+              src="/images/carreras_unid.webp"
+              alt="Conoce las carreras profesionales de la Universidad Interamericana para el Desarrollo"
+              width={2376}
+              height={2938}
+              priority
+              sizes="(max-width: 640px) 92vw, 650px"
+              className="block h-auto max-h-[92dvh] w-auto max-w-full object-contain"
+            />
 
-              <AnimatePresence initial={false}>
-                <motion.div
-                  key={currentSlide}
-                  initial={{ opacity: 0, x: "100%" }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: "-100%" }}
-                  transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={slides[currentSlide].src}
-                    alt={slides[currentSlide].alt}
-                    fill
-                    className="object-contain block rounded-md"
-                    priority
-                  />
-                  
-                  {currentSlide === 0 && (
-                    <>
-                      {/* Overlay Gradient at the bottom to ensure button readability if needed */}
-                      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none rounded-b-md z-10" />
-
-                      {/* Button Overlaid at the bottom */}
-                      <div className="absolute bottom-6 left-0 right-0 px-6 flex justify-center z-20">
-                        <a
-                          href={slides[currentSlide].link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-8 py-3.5 bg-[#0023bf] hover:bg-[#001da0] text-white font-bold text-[15px] sm:text-base rounded-full shadow-lg shadow-blue-900/40 hover:shadow-blue-900/60 hover:scale-[1.05] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide"
-                        >
-                          {slides[currentSlide].buttonText}
-                        </a>
-                      </div>
-                    </>
-                  )}
-                </motion.div>
-              </AnimatePresence>
+            <div className="pointer-events-none absolute bottom-[0.5%] right-[0.5%] z-10 sm:bottom-[1.5%] sm:right-[1.5%]">
+              <motion.a
+                href="https://erpeduca.unidx.edu.pe/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => sessionStorage.setItem(POPUP_SESSION_KEY, "true")}
+                className="pointer-events-auto whitespace-nowrap rounded-md border border-white/30 bg-[#0639c9] px-2 py-1.5 text-center text-[10px] font-bold tracking-normal text-white shadow-[0_6px_18px_rgba(0,35,191,0.45)] transition-colors hover:bg-[#002ba3] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-700 sm:px-5 sm:py-2.5 sm:text-sm sm:tracking-wide"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                aria-label="Inscríbete ahora en ERP Educa"
+              >
+                Inscríbete ahora
+              </motion.a>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   )
